@@ -20,7 +20,7 @@ const FlexContainer = styled.div`
   align-item: flex-start;
 `
 
-const Flexitem = styled.div`
+const FlexItem = styled.div`
   -webkit-flex: 0 1 auto;
   -ms-flex: 0 1 auto;
   flex: 0 1 auto;
@@ -28,6 +28,7 @@ const Flexitem = styled.div`
   -ms-flex-item-align: auto;
   align-self: auto;
   margin: 4px;
+  max-width: 400px;
 `
 
 const IndexPage = ({data}) => {
@@ -50,9 +51,6 @@ const IndexPage = ({data}) => {
             <span> </span>
             <a href={node.attributes.webUrl} target="_blank" rel="noopener noreferrer" className="async icon_bolt icon" title="Build project">B</a>
           </span>
-        <div className="actions">
-          
-        </div>
         <div class="projectInfo" title={node.attributes.name}>
           <span class="lastActivity">{node.attributes.activity}</span>
           {/*(<span class="lastStatus">{node.attributes.lastBuildStatus}</span>)*/} {/*Removed as the color provides the same info*/} 
@@ -63,29 +61,23 @@ const IndexPage = ({data}) => {
     </ul>
     <hr/>
     <FlexContainer>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
+    {data.allTest1Xml.edges.map(({ node }, index) => (
+      /* relative position required to align the child div bot right*/
+      <FlexItem style={{position: "relative", border: "4px solid rgba(200, 200, 200, 0.6)", borderRadius: "8px", backgroundColor: statusToColor(node.attributes.lastBuildStatus)}}>
+          <span>{node.attributes.name}</span>
+          <div style={{position: "absolute", bottom: 0, right: 0}}>
+            <a href={node.attributes.webUrl} target="_blank" rel="noopener noreferrer" className="icon_view icon" title="View project">V</a>
+            <span> </span>
+            <a href={node.attributes.webUrl} target="_blank" rel="noopener noreferrer" className="async icon_bolt icon" title="Build project">B</a>
+          </div>
+          
+        <div class="projectInfo" title={node.attributes.name}>
+          <span class="lastActivity">{node.attributes.activity}</span>
+          {/*(<span class="lastStatus">{node.attributes.lastBuildStatus}</span>)*/} {/*Removed as the color provides the same info*/} 
+        </div>
+      </FlexItem>
+    ))}
     </FlexContainer>
-    <FlexContainer>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-      <Flexitem>Content is here</Flexitem>
-    </FlexContainer>
-    <Link to="/page-2/">Go to page 2</Link>
   </Layout>
 )}
 
