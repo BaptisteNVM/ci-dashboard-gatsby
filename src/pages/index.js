@@ -1,34 +1,40 @@
 import React from "react"
 import { Link } from "gatsby"
-
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 import { graphql } from "gatsby"
+import styled from "styled-components"
 
 const statusToColor = (state) => {
   if(state === "Success") return "rgba(15, 229, 0, 0.73)";
-  if(state === "Failure") return "#ff4a4a";
-  return "#b1b1e3" // blueish by default
+  if(state === "Failure") return "rgba(191, 63, 63, 0.73)";
+  return "rgba(63, 127, 191, 0.43)" // blueish by default
 }
+
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-around;
+  align-item: flex-start;
+`
+
+const Flexitem = styled.div`
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: auto;
+  -ms-flex-item-align: auto;
+  align-self: auto;
+  margin: 4px;
+`
 
 const IndexPage = ({data}) => {
   console.log("retrieving data from xml file using graphql: ", data);
   return (
   <Layout>
     <SEO title="Dashboard" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <hr/>
-    <ul>
-    {data.allTest1Xml.edges.map(({ node }, index) => (
-      <li key={index}>{node.attributes.name}</li>
-    ))}
-    </ul>
     <hr/>
     {/* TODO Remove the padding on the ul. Easier once a proper css stuff is set up since we would need to do padding: 0 on all li*/}
     <ul style={{listStyleType: "none"}}>
@@ -55,6 +61,30 @@ const IndexPage = ({data}) => {
       </div>
     ))}
     </ul>
+    <hr/>
+    <FlexContainer>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+    </FlexContainer>
+    <FlexContainer>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+      <Flexitem>Content is here</Flexitem>
+    </FlexContainer>
     <Link to="/page-2/">Go to page 2</Link>
   </Layout>
 )}
