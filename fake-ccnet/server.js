@@ -16,4 +16,4 @@ app.get(route, (req, res) => {
 });
 
 const port = 8282;
-app.listen(port, () => console.log(`report.xml available at http://localhost:${port}${route}`));
+app.listen(port, () => console.log(`${path.basename(reportPath)} available at http://localhost:${port}${route}`));

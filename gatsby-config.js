@@ -16,41 +16,49 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-apiserver",
+      resolve: "apiserver-xml-datapolling",
       options: {
         // The url, this should be the endpoint you are attempting to pull data from
         url: `http://localhost:8282/ccnet/XmlStatusReport`,
-  
-        method: "get",
-  
+
+        // CCNET does not support json
+        // json expected by default
         headers: {
-          "Content-Type": "application/xml"
+           "Content-Type": "application/xml"
         },
-  
+        method: "get",
+        // TODO Is this usefull?
+        auth: false,
         // Name of the data to be downloaded.  Will show in graphQL or be saved to a file
         // using this name. i.e. posts.json
         name: `projects`,
-  
+
         // Nested level of entities in response object, example: `data.posts`
-        entityLevel: `data.projects`,
-  
-        payloadKey: `body`,
-  
+        entityLevel: "Projects.Project", // do res.Projects.Project to get the data for the node (an array in this case)
+
+        // Optional payload key name if your api returns your payload in a different key
+        // Default will use the full response from the http request of the url
+        // payloadKey: `Projects`, don't neet this 
+
         // Optionally save the JSON data to a file locally
         // Default is false
         localSave: false,
   
         // Optionally include some output when building
         // Default is false
-        verboseOutput: true, // For debugging purposes
+        verboseOutput: true,
   
-        // Optionally re-source data when it changes and
-        // `gatsby develop` is running.
-        // Requires `ENABLE_GATSBY_REFRESH_ENDPOINT=true`.
-        // See https://www.gatsbyjs.org/docs/environment-variables/#reserved-environment-variables
-        // Default is false
-        enableDevRefresh: true
-      }
+        // Define schemaType to normalize blank values
+        // TODO Is this usefull?
+        // schemaType: {
+        //     array: [{
+        //       activity: "String",
+        //       lastBuildStatus: "String",
+        //       name: "String",
+        //       webUrl: "String",
+        //     }]
+        // }
+      },
     },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,

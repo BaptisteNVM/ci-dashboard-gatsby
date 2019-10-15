@@ -1,0 +1,2 @@
+set ENABLE_GATSBY_REFRESH_ENDPOINT=1
+gatsby develop

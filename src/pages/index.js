@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { graphql } from "gatsby"
@@ -18,6 +17,7 @@ const FlexContainer = styled.div`
   justify-content: center;
   align-content: space-around;
   align-item: flex-start;
+  margin-bottom: 1.45rem,
 `
 
 const FlexItem = styled.div`
@@ -36,57 +36,34 @@ const IndexPage = ({data}) => {
   return (
   <Layout>
     <SEO title="Dashboard" />
-    <hr/>
-    {/* TODO Remove the padding on the ul. Easier once a proper css stuff is set up since we would need to do padding: 0 on all li*/}
-    <ul style={{listStyleType: "none"}}>
-    {data.allTest1Xml.edges.map(({ node }, index) => (
-      /* relative position required to align the child div bot right*/
-      <div style={{position: "relative", border: "4px solid rgba(200, 200, 200, 0.6)", borderRadius: "8px", backgroundColor: statusToColor(node.attributes.lastBuildStatus), marginBottom: "4px", maxWidth: "400px"}}>
-      <li key={index}>{node.attributes.name}
-          {
-            // TODO fix the url, see the current version's logic
-          }
-          <span style={{position: "absolute", bottom: 0, right: 0}}>
-            <a href={node.attributes.webUrl} target="_blank" rel="noopener noreferrer" className="icon_view icon" title="View project">V</a>
-            <span> </span>
-            <a href={node.attributes.webUrl} target="_blank" rel="noopener noreferrer" className="async icon_bolt icon" title="Build project">B</a>
-          </span>
-        <div class="projectInfo" title={node.attributes.name}>
-          <span class="lastActivity">{node.attributes.activity}</span>
-          {/*(<span class="lastStatus">{node.attributes.lastBuildStatus}</span>)*/} {/*Removed as the color provides the same info*/} 
-        </div>
-      </li>
-      </div>
-    ))}
-    </ul>
-    <hr/>
     <FlexContainer>
-    {data.allTest1Xml.edges.map(({ node }, index) => (
+    {data.allProjects.edges.map(({ node }, index) => (
       /* relative position required to align the child div bot right*/
-      <FlexItem style={{position: "relative", border: "4px solid rgba(200, 200, 200, 0.6)", borderRadius: "8px", backgroundColor: statusToColor(node.attributes.lastBuildStatus)}}>
-          <span>{node.attributes.name}</span>
+      // TODO Move FlexItem to a separate React coomponent
+      <FlexItem style={{position: "relative", border: "4px solid rgba(200, 200, 200, 0.6)", borderRadius: "8px", backgroundColor: statusToColor(node._attributes.lastBuildStatus)}}>
+          <span>{node._attributes.name}</span>
           <div style={{position: "absolute", bottom: 0, right: 0}}>
-            <a href={node.attributes.webUrl} target="_blank" rel="noopener noreferrer" className="icon_view icon" title="View project">V</a>
+            <a href={node._attributes.webUrl} target="_blank" rel="noopener noreferrer" className="icon_view icon" title="View project">V</a>
             <span> </span>
-            <a href={node.attributes.webUrl} target="_blank" rel="noopener noreferrer" className="async icon_bolt icon" title="Build project">B</a>
+            <a href={node._attributes.webUrl} target="_blank" rel="noopener noreferrer" className="async icon_bolt icon" title="Build project">B</a>
           </div>
-          
-        <div class="projectInfo" title={node.attributes.name}>
-          <span class="lastActivity">{node.attributes.activity}</span>
-          {/*(<span class="lastStatus">{node.attributes.lastBuildStatus}</span>)*/} {/*Removed as the color provides the same info*/} 
+        <div class="projectInfo" title={node._attributes.name}>
+          <span class="lastActivity">{node._attributes.activity}</span>
         </div>
       </FlexItem>
     ))}
     </FlexContainer>
+    <hr/>
   </Layout>
 )}
 
+//TODO: Shoudle be allProjects...
 export const queryXmlDoc = graphql`
   query {
-    allTest1Xml {
+    allProjects {
       edges {
         node {
-          attributes {
+          _attributes {
             name
             activity
             lastBuildStatus
@@ -97,5 +74,4 @@ export const queryXmlDoc = graphql`
     }
   } 
 `
-
 export default IndexPage

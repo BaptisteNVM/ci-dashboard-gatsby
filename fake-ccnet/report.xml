@@ -1,5 +1,5 @@
 <Projects CCType="CCNet">
-    <Project name="Important Project Name" category="Core" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="5" lastBuildTime="2012-02-22T10:22:40.4026703+00:00" nextBuildTime="2012-02-22T11:20:13.4929454+00:00" webUrl="http://servername/ccnet" CurrentMessage="Build (IfModificationExists) triggered from continuous" BuildStage="" serverName="local" description="">
+    <Project name="Important Project Name updated" category="Core" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="5" lastBuildTime="2012-02-22T10:22:40.4026703+00:00" nextBuildTime="2012-02-22T11:20:13.4929454+00:00" webUrl="http://servername/ccnet" CurrentMessage="Build (IfModificationExists) triggered from continuous" BuildStage="" serverName="local" description="">
         <messages>
             <message text="Build (IfModificationExists) triggered from continuous" kind="BuildStatus" />
         </messages>

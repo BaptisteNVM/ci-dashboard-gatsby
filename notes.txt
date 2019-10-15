@@ -1,0 +1,30 @@
+Steps:
+-1 Rebuild it with gatsby
+	local xml data
+
+0 Improve UX
+	Buttons always visible
+	Remove the label that repeats the color
+
+	0.1 Replace Building / Sleeping / Checking for modifications with gifs / nice svgs
+
+	0.2 Have a detailed tooltip displayed, that comes from the config (at least for now, ideally it would come from jenkins / ccnet)
+
+	0.3 Add a button to pop a modal window, to describe how the dashboard works / shows the mapping between colors and statuses
+
+1 Have a list of mappings between project name and "row" and "column". row 0 is the top one, 1 is the one below it.
+	Display accordingly
+	Have a checkConfig function to check that the assumptions about the layout are correct (no gaps both vertically and horizontally?)
+
+	1.1 Center it
+
+2 Add a third button to link to the docs. The link comes from the config
+
+3 Add a "Looks flakey" icon on build failure by retrieving the history of the failling tests (It's flaky if all failling test failed X number of times in the last X days)
+	Testers can then trigger the build when it looks flakey
+------------------------
+
+Is this applicable / helping:
+- Have a "Direction" property and display an arrow inside the block that can point down, up, convergent (-> <-), divergent (<- ->)
+Have a look and see hard it is to make it a generic dashboard (how do Jenkins' wall display work for exemple)
+	A middleware responsible for the mapping of the fields, configurable urls, JSON polling support and more.
